@@ -1,5 +1,7 @@
-TypeScript React Hello World Demo
-=================================
+TypeScript "react-async-hook" Trigger by Click Demo
+===================================================
+
+点击按钮后触发一个async操作
 
 ```
 npm install
