@@ -1,4 +1,4 @@
-TypeScript "react-async-hook" Trigger by Click Demo
+TypeScript "react-query" Trigger by Click Demo
 ===================================================
 
 点击按钮后触发一个async操作

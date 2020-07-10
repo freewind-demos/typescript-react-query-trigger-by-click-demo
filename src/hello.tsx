@@ -1,21 +1,20 @@
 import React from 'react';
-import {useAsyncCallback} from 'react-async-hook';
+import {useQuery} from 'react-query';
 import fetchRemoteMessage from './fetchRemoteMessage';
 
 export default function Hello() {
-  const asyncCallback = useAsyncCallback(() => fetchRemoteMessage('RemoteHello1'))
-
-  async function fetch() {
-    await asyncCallback.execute();
-  }
+  const {isLoading, refetch, data, error} = useQuery('fetchRemoteMesage', () => fetchRemoteMessage('RemoteHello1'), {
+    retry: false,
+    enabled: false
+  })
 
   return <div>
     {
-      asyncCallback?.loading
+      isLoading
         ? <div>Loading...</div>
-        : <button onClick={fetch}>Fetch remote message</button>
+        : <button onClick={() => refetch()}>Fetch remote message</button>
     }
-    {asyncCallback?.error && <div>Error: {asyncCallback?.error?.message}</div>}
-    {asyncCallback?.result !== undefined && <div>Hello, {asyncCallback?.result}</div>}
+    {error && <div>Error: {error?.message}</div>}
+    {data !== undefined && <div>Hello, {data}</div>}
   </div>;
 };
